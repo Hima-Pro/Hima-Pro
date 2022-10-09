@@ -2,8 +2,8 @@
 ## About me
 A Front-End developer and UI-UX designer.
 
-<img width="400px" src="https://github-readme-stats.vercel.app/api/top-langs?username=Hima-Pro&show_icons=true&locale=en&layout=compact&hide_border=true&theme=dark&icon_color=5194f0&bg_color=0d1117" alt="Hima-Pro" />
-<br />
+<!-- img width="400px" src="https://github-readme-stats.vercel.app/api/top-langs?username=Hima-Pro&show_icons=true&locale=en&layout=compact&hide_border=true&theme=dark&icon_color=5194f0&bg_color=0d1117" alt="Hima-Pro" />
+<br / -->
 <img width="400px" src="https://github-readme-stats.vercel.app/api?username=Hima-Pro&show_icons=true&locale=en&layout=compact&hide_border=true&theme=dark&icon_color=5194f0&bg_color=0d1117" alt="Hima-Pro" />
 
 ## Skills & Tools
