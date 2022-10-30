@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="I am Ibrahim Mohamed, I love chess, medicine, design and programming, Just a student in Russian Belgorod state university (НИУ БелГУ).">
+    <link rel="stylesheet" href="assets/css/monolith.min.css">
+    <link rel="stylesheet" href="https://bit.ly/3goJURh">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <script type="module" src="https://cdn.jsdelivr.net/npm/@pwabuilder/pwainstall"></script>
+    <link rel="shortcut icon" href="favicon.ico">
+    <link rel="manifest" href="./manifest.json">
+    <title>Hima-Pro</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cairo&display=swap');
+  *{
+    font-family: 'Cairo', sans-serif;
+  }
+  :root{
+    --primary: #C20605;
+  }
+</style>
+  </head>
+  <body>
+    <header>
+      <a class="mode" onclick="mode()" href="#"><i class="fa fa-moon"></i></a>
+      <nav>
+        <a class="projects" onclick="go('/?p=projects')"><i class="fa fa-grid-2"></i></a>
+        <a class="contact" onclick="go('/?p=contact')"><i class="fa fa-envelope"></i></a>
+        <a class="home" onclick="go('/?p=home')"><i class="fa fa-home"></i></a>
+        <a class="skills" onclick="go('/?p=skills')"><i class="fa fa-code-simple"></i></a>
+        <a class="settings" onclick="go('/?p=settings')"><i class="fa fa-cog"></i></a>
+      </nav>
+      <a class="full" onclick="full()" href="#"><i class="fa fa-expand"></i></a>
+    </header>
+    <section class="container">
+      <center style="width:100%">
+        <center id="projects" class="main">
+          <h2><i class="fa fa-grid-2"></i> My Projects</h2><hr>
+          <a href="#">
+            <img src=""/>
+            <p></p>
+          </a>
+        </center>
+        <center id="p404" class="main">
+          <h2><i class="fa fa-square-exclamation"></i> ERROR 404</h2><hr>
+          <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+          <lottie-player src="assets/images/404.json"  background="transparent"  speed="1"  loop autoplay></lottie-player>
+          <p>Page not found, or moved to another URL.</p>
+          <button onclick="history.back(-1)">Go Back</button>
+          <button onclick="location.href='/'">Home Page</button>
+        </center>
+        <center id="contact"  class="main">
+          <h2><i class="fa fa-envelope"></i> Contact Us</h2><hr>
+          <input id="" style="width: calc(50% - 15px);margin: 5px 3px;" placeholder="First Name" />
+          <input id="" style="width: calc(50% - 15px);margin: 5px 3px;" placeholder="Last Name" />
+          <br>
+          <input id="" type="email" placeholder="Email" />
+          <br>
+          <input id="" placeholder="Subject" />
+          <br>
+          <textarea id="" style="height:150px;resize: none;" placeholder="Message"></textarea>
+          <br>
+          <button type="submit"><i class="fas fa-paper-plane"></i> Send</button>
+        </center>
+        <div id="home" class="main">
+          <br><img src="assets/images/logo.png" alt="Ibrahim Mohamed" />
+          <h2><i class="fa fa-user-graduate"></i> Ibrahim Mohamed</h2><hr>
+          <h4><i class="far fa-info-circle"></i> I am Ibrahim Mohamed, I love chess, medicine, design and programming, Just a student in Russian Belgorod state university (НИУ БелГУ).</h4>
+          <h4><i class="far fa-graduation-cap"></i> Studies in НИУ «БелГУ»</h4>
+          <h4><i class="far fa-location-dot"></i> From Egypt, Fayoum</h4>
+          <h4><i class="far fa-location-dot"></i> Lives in Russia, Belgorod</h4>
+          <h4><i class="fab fa-whatsapp"></i> +7 (996) 102-76-89</h4>
+          <h4><i class="far fa-envelope"></i> tdim.dev@gmail.com</h4>
+          <h4 style="text-align: left;"><i class="fa-light fa-medal"></i>
+            <button>Learn English</button>
+            <button>Swimming</button>
+            <button>Studying</button>
+            <button>Learn to code</button>
+            <button>Learn Russian</button>
+            <button>Learn Arabic</button>
+            <button>Learn Frinch</button>
+          </h4>
+          <span>All &copy; Rights Saved Hima-Pro 2022.</span>
+          <br>
+        </div>
+        <center id="skills" class="main">
+          <h2><i class="fa fa-code-simple"></i> Skills & Tools</h2><hr>
+          <span>
+            <img src="assets/images/skills/html5.svg"/>
+            <p>HTML5</p>
+          </span>
+          <span>
+            <img src="assets/images/skills/css3.svg"/>
+            <p>CSS3</p>
+          </span>
+          <span>
+            <img src="assets/images/skills/js.svg"/>
+            <p>Javascript</p>
+          </span>
+          <span>
+            <img src="assets/images/skills/python.svg"/>
+            <p>Python</p>
+          </span>
+          <span>
+            <img src="assets/images/skills/php.svg"/>
+            <p>PHP</p>
+          </span>
+          <span>
+            <img src="assets/images/skills/mysql.svg"/>
+            <p>MySQL</p>
+          </span>
+          <span>
+            <img src="assets/images/skills/ubuntu.svg"/>
+            <p>Ubuntu</p>
+          </span>
+          <span>
+            <img src="assets/images/skills/vscode.png"/>
+            <p>VS Code</p>
+          </span>
+          <span>
+            <img src="assets/images/skills/docker.svg"/>
+            <p>Docker</p>
+          </span>
+          <span>
+            <img src="assets/images/skills/git.svg"/>
+            <p>GIT</p>
+          </span>
+        </center>
+        <center id="settings" class="main">
+          <h2><i class="fa fa-cog"></i> Settings</h2><hr>
+          <fieldset>
+            <legend><span><i class="fa fa-moon-over-sun"></i> Theme Mode</span></legend>
+            <span>Select Theme mode :</span>
+            <select id="modeSetting" onchange="ldb.setItem('mode',this.value)">
+              <option value="dark">dark</option>
+              <option value="light">light</option>
+            </select>
+          </fieldset>
+          <fieldset>
+            <legend><span><i class="far fa-palette"></i> Theme Color</span></legend>
+            <span>Select Theme color :</span>
+            <input style="display:none" type="button" value="Color Picker" class="pickr">
+          </fieldset>
+          <fieldset>
+            <legend><span><i class="far fa-download"></i> Application</span></legend>
+            <span>Make app installable :</span>
+            <input type="button" value="Install">
+          </fieldset>
+          <fieldset>
+            <legend><span><i class="far fa-download"></i> 3D Design</span></legend>
+            <span>Enable 3D design :</span>
+            <select id="mode3DSwitcher" onchange="ldb.setItem('support3d',this.value)">
+              <option value="disable">disable</option>
+              <option value="enable">enable</option>
+            </select>
+          </fieldset>
+          <br>
+        </center>
+        <div class="social" style="display:">
+          <a href="http://github.com/TdimMax"><i class="fab fa-github"></i></a>
+          <a href="http://t.me/TdimDev"><i class="fab fa-telegram"></i></a>
+          <a href="http://instagram.com/Tdim.Dev"><i class="fab fa-instagram"></i></a>
+          <a href="http://fb.com/TdimDev"><i class="fab fa-facebook"></i></a>
+          <a href="http://m.me/TdimDev"><i class="fab fa-facebook-messenger"></i></a>
+          <a href="http://dev.to/tdimmax"><i class="fab fa-dev"></i></a>
+        </div>
+      </center>
+    </section>
+    <script src="assets/js/pickr.es5.min.js"></script>
+    <script src="assets/js/script.js"></script>
+  </body>
+</html>

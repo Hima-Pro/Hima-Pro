@@ -1,0 +1,270 @@
+@import url('https://fonts.googleapis.com/css2?family=Cairo&display=swap');
+
+* {
+  box-sizing: border-box;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+:root{
+  --shadow: 0 0 5px 1px #00000033 inset,
+  0 0 5px 1px #00000033;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+html,
+body,
+.container {
+  margin: 0;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg);
+}
+
+header {
+  position: fixed;
+  padding: 1rem;
+  bottom: 0;
+  backdrop-filter: blur(10px);
+  width: 100%;
+  text-align: center;
+  z-index: 2;
+}
+
+header * {
+  display: inline-block;
+}
+
+header nav {
+  padding: 5px 10px;
+  border-radius: 10px;
+  background: var(--bg2);
+  height: 40px;
+  box-shadow: var(--shadow);
+}
+
+header a {
+  zoom: 0.8;
+  display: inline-block;
+  height: 40px;
+  line-height: 40px;
+  width: 40px;
+  text-align: center;
+  font-size: 1.25rem;
+  border-radius: 50%;
+  color: var(--theme);
+}
+
+header a:hover,
+header .active {
+  color: var(--bg2);
+  background: var(--theme);
+}
+
+header nav a:active,
+header .active {
+  font-size: 1.5rem;
+  color: var(--bg);
+  margin: -17.5px auto 17.5px auto;
+  border: 10px solid var(--bg);
+  height: 70px;
+  line-height: 50px;
+  width: 70px;
+}
+
+.main {
+  width: 70%;
+  max-width: 600px;
+  min-width: 340px;
+  min-height: 450px;
+  max-height: 63vh;
+  overflow: auto;
+  border-radius: 10px;
+  display: none;
+  font-family: 'Cairo', sans-serif;
+  background: var(--bg2);
+  box-shadow: var(--shadow);
+}
+
+.main img {
+  width: 100%;
+  border-radius: 10px 10px 0 0;
+  border-bottom: 1px solid var(--theme);
+}
+
+.main h2 {
+  margin: 5px;
+  color: var(--theme);
+}
+
+.main hr {
+  margin: 0 10px;
+  height: 0;
+  background: var(--bg2);
+  border: 0.03rem solid var(--bg);
+}
+
+.main p {
+  margin: 5px 10px;
+  color: var(--font);
+  text-align: justify;
+}
+
+#p404 img{width:300px}
+#p404 p{
+  text-align: center;
+  color: var(--font);
+}
+#p404 button{
+  width: 120px;
+  height: 40px;
+  margin: 10px 5px;
+  box-shadow: 0 0 10px 2px #00000033;
+  border: 1px solid var(--theme);
+  border-radius: 7.5px;
+  background: var(--theme);
+  color: var(--font);
+}
+#p404 button:hover{background: var(--bg2);}
+
+#skills span {
+  display: inline-block;
+  border: 1px solid var(--bg);
+  border-radius: 10px;
+  margin: 10px;
+  padding: 10px;
+}
+#skills span:hover {
+  background: var(--theme);
+  box-shadow: 0 0 5px 1px rgba(0,0,0,0.33);
+  border-color: rgba(0,0,0,0.33);
+}
+
+#skills p {
+  text-align: center;
+}
+
+#skills img {
+  width: 100px;
+  padding-bottom: 10px;
+  border-bottom-color: var(--bg);
+}
+
+#home img {
+  width: 170px;
+  height: 170px;
+  border-radius: 50%;
+  border: 5px solid var(--bg);
+}
+
+#home h4 {
+  color: var(--font);
+  margin: 10px;
+  padding: 10px;
+  border: 1px solid var(--bg);
+  border-radius: 10px;
+  text-align: justify;
+}
+
+#home h4 i {
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+}
+
+#home h4 button {
+  padding: 5px 10px;
+  border: none;
+  border-radius: 50px;
+  background: var(--theme);
+  color: #ffffff;
+  margin: 5px 2.5px;
+}
+
+#home span {
+  color: var(--font)
+}
+
+::placeholder {
+  color: var(--font);
+  opacity: 0.44;
+}
+
+#contact input,
+#contact textarea {
+  height: 40px;
+  width: calc(100% - 20px);
+  margin: 5px 10px;
+  border-radius: 10px;
+  background: var(--bg);
+  outline-color: var(--theme);
+  color: var(--theme);
+  border: none;
+  padding: 5px 10px;
+}
+
+#contact button {
+  height: 50px;
+  width: 100px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  background: var(--bg);
+  color: var(--theme);
+  border: none;
+  padding: 5px 10px;
+  font-size: 1.25rem;
+  font-weight: 800;
+}
+
+#settings fieldset{
+  border: none;
+  border-top: 1px solid var(--bg);
+  margin: 10px;
+  color: var(--font);
+  text-align: left;
+}
+#settings fieldset legend{
+  border: 1px solid var(--bg);
+  border-top: none;
+  border-bottom: none;
+  padding: 0 10px;
+}
+#settings fieldset{
+  display: flex;
+  justify-content: space-between;
+}
+
+#settings select, #settings input{
+  min-width: 100px;
+}
+
+.social {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.social a {
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  background: var(--bg2);
+  text-align: center;
+  border-radius: 10px;
+  display: inline-block;
+  color: var(--theme);
+  margin: 0 3px;
+  font-size: 25px;
+  box-shadow: var(--shadow);
+}
+
+.social a:hover {
+  background: var(--theme);
+  color: #fff;
+}
