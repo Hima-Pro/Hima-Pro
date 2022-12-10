@@ -2,73 +2,78 @@
 var ldb = window.localStorage;
 var root = document.querySelector(':root').style;
 var config = {
-  "colorAccent": "#0099ff",
-  "defaultMode": "light",
-  "support3d": "disable",
-  "pages": ["projects", "contact", "home", "skills", "settings"]
+  "defaultMode": "dark",
+  "colorAccent": "#FFCA00",
+  "pages": ["projects", "contact", "home", "posts", "donate"]
 };
 var go = (path) => {
   history.replaceState('', "Hima-Pro", path);
 };
 
+setInterval(engine, 10);
 function engine() {
+  var page = new URL(location.href).searchParams.get("p");
+  document.querySelectorAll(".main").forEach(box => {
+    box.style.display = "none";
+    if (config.pages.includes(page)) {
+      document.querySelector("#" + page).style.display = "block";
+    } else {
+      if (page==null) {
+      document.querySelector("#home").style.display = "block";
+      } else {
+      document.querySelector("#p404").style.display = "block";
+      }
+    }
+  });
+  document.querySelectorAll("header > nav > span").forEach(tab => {
+    tab.classList.remove("active");
+    if (config.pages.includes(page)) {
+      document.querySelector("header > nav > ." + page).classList.add("active");
+    } else if(page==null){
+      document.querySelector("header > nav > .home").classList.add("active");
+    }
+  });
   var mode = ldb.getItem("mode");
   var theme = ldb.getItem("theme");
-  var support3d = ldb.getItem("support3d");
-  var page = new URL(location.href).searchParams.get("p");
-  var timer = setInterval(function() {
-    document.querySelectorAll(".main").forEach(box => {
-      box.style.display = "none";
-      if (config.pages.includes(page)) {
-        document.querySelector("#" + page).style.display = "block";
-      } else {
-        if (page==null) {
-        document.querySelector("#home").style.display = "block";
-        } else {
-        document.querySelector("#p404").style.display = "block";
-        }
-      }
-    });
-    document.querySelectorAll("header > nav > a").forEach(tab => {
-      tab.classList.remove("active");
-      if (config.pages.includes(page)) {
-        document.querySelector("header > nav > ." + page).classList.add("active");
-      } else if(page==null){
-        document.querySelector("header > nav > .home").classList.add("active");
-      }
-    });
-    if (theme != config.colorAccent && !theme) {
-      ldb.setItem("theme", config.colorAccent);
+  if (theme != config.colorAccent && !theme) {
+    ldb.setItem("theme", config.colorAccent);
+  }
+  if (!mode) {
+    ldb.setItem("mode", config.defaultMode);
+  }
+  if (mode == "dark") {
+    root.setProperty('--primary', '#313131');
+    root.setProperty('--theme', theme);
+    root.setProperty('--font', '#dddddd');
+    root.setProperty('--secondary', '#3f3f3f');
+    if(document.body.offsetWidth<=800){
+      window.themeColor.setAttribute('content', '#3f3f3f');
+    } else{
+      window.themeColor.setAttribute('content', '#313131');
     }
-    if (!mode) {
-      ldb.setItem("mode", config.defaultMode);
+  } else {
+    root.setProperty('--primary', '#eeeeee');
+    root.setProperty('--theme', theme);
+    root.setProperty('--font', '#3f3f3f');
+    root.setProperty('--secondary', '#ffffff');
+    if(document.body.offsetWidth<=800){
+      window.themeColor.setAttribute('content', '#efffff');
+    } else{
+      window.themeColor.setAttribute('content', '#eeeeee');
     }
-    if (!support3d) {
-      ldb.setItem("support3d", config.support3d);
-    }
-    if (mode == "dark") {
-      root.setProperty('--bg', '#313131');
-      root.setProperty('--theme', theme);
-      root.setProperty('--font', '#dddddd');
-      root.setProperty('--bg2', '#3f3f3f');
-    } else {
-      root.setProperty('--bg', '#eeeeee');
-      root.setProperty('--theme', theme);
-      root.setProperty('--font', '#3f3f3f');
-      root.setProperty('--bg2', '#ffffff');
-    }
-    if (support3d == "disable") {
-      root.setProperty('--shadow', "0 0 transparent");
-    } else {
-      root.setProperty('--shadow', "0 0 5px 1px #00000033 inset, 0 0 5px 1px #00000033;");
-    }
-    window.modeSetting.value = mode;
-    window.mode3DSwitcher.value = support3d;
-    clearInterval(timer);
-    engine();
-  }, 10);
+  }
+  window.modeSetting.value = mode;
 }
-
+function homeTab(tabName) {
+  document.querySelectorAll(".home-tabs > .tab").forEach(box => {
+    box.classList.remove("active");
+      document.querySelector(".home-tabs > ." + tabName).classList.add("active");
+  });
+  document.querySelectorAll(".tab-contents > .tab-content").forEach(box => {
+    box.style.display="none";
+      document.querySelector(".tab-contents > ." + tabName).style.display="block";
+  });
+}
 function full() {
   var doc = window.document;
   var docEl = doc.documentElement;
@@ -80,7 +85,6 @@ function full() {
     cancelFullScreen.call(doc);
   }
 }
-
 function mode() {
   var mode = ldb.getItem("mode");
   if (mode == "dark") {
@@ -90,11 +94,6 @@ function mode() {
   }
 }
 
-function makeOffline() {
-  if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('sw.js');
-  }
-}
 const inputElement = document.querySelector('.pickr');
 const pickr = new Pickr({
   el: inputElement,
@@ -127,4 +126,3 @@ pickr.on('save', (color, pickr) => {
 });
 pickr.getRoot().preview.lastColor.style.display = "none";
 pickr.getRoot().preview.currentColor.style.width = "100%";
-engine();

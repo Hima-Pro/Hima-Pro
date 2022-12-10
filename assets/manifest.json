@@ -1,0 +1,22 @@
+{
+  "name": "Hima-Pro",
+  "short_name": "Hima-Pro",
+  "start_url": "../index.html",
+  "scope": "../",
+  "display": "standalone",
+  "theme_color": "#313131",
+  "background_color": "#313131",
+  "description": "I am Ibrahim Mohamed, I love chess, medicine, design and programming, Just a student in Russian Belgorod state university (НИУ БелГУ).",
+  "icons": [
+    {
+      "src": "images/logo-192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "images/logo-512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ]
+}

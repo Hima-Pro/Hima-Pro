@@ -4,11 +4,11 @@
   box-sizing: border-box;
   -ms-overflow-style: none;
   scrollbar-width: none;
+  font-family: 'Cairo', sans-serif;
 }
 
 :root{
-  --shadow: 0 0 5px 1px #00000033 inset,
-  0 0 5px 1px #00000033;
+  --shadow:0 0 5px 1px #00000033;
 }
 
 ::-webkit-scrollbar {
@@ -24,12 +24,12 @@ body,
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--bg);
+  background: var(--primary);
 }
 
 header {
   position: fixed;
-  padding: 1rem;
+  padding: 1rem 0;
   bottom: 0;
   backdrop-filter: blur(10px);
   width: 100%;
@@ -42,40 +42,33 @@ header * {
 }
 
 header nav {
-  padding: 5px 10px;
   border-radius: 10px;
-  background: var(--bg2);
-  height: 40px;
+  background: var(--secondary);
+  height: 45px;
+  line-height: 45px;
   box-shadow: var(--shadow);
 }
 
-header a {
-  zoom: 0.8;
+header span {
   display: inline-block;
   height: 40px;
   line-height: 40px;
   width: 40px;
   text-align: center;
-  font-size: 1.25rem;
   border-radius: 50%;
   color: var(--theme);
 }
 
-header a:hover,
+header span:hover,
 header .active {
-  color: var(--bg2);
   background: var(--theme);
+  color: var(--secondary);
 }
 
-header nav a:active,
+header nav span:active,
 header .active {
-  font-size: 1.5rem;
-  color: var(--bg);
-  margin: -17.5px auto 17.5px auto;
-  border: 10px solid var(--bg);
-  height: 70px;
-  line-height: 50px;
-  width: 70px;
+  background: var(--theme);
+  color: var(--secondary);
 }
 
 .main {
@@ -88,7 +81,7 @@ header .active {
   border-radius: 10px;
   display: none;
   font-family: 'Cairo', sans-serif;
-  background: var(--bg2);
+  background: var(--secondary);
   box-shadow: var(--shadow);
 }
 
@@ -98,7 +91,7 @@ header .active {
   border-bottom: 1px solid var(--theme);
 }
 
-.main h2 {
+.main h1, .main h2{
   margin: 5px;
   color: var(--theme);
 }
@@ -106,8 +99,8 @@ header .active {
 .main hr {
   margin: 0 10px;
   height: 0;
-  background: var(--bg2);
-  border: 0.03rem solid var(--bg);
+  background: var(--secondary);
+  border: 0.03rem solid var(--primary);
 }
 
 .main p {
@@ -131,55 +124,72 @@ header .active {
   background: var(--theme);
   color: var(--font);
 }
-#p404 button:hover{background: var(--bg2);}
+#p404 button:hover{background: var(--secondary);}
 
-#skills span {
+#home .skills span {
   display: inline-block;
-  border: 1px solid var(--bg);
+  border: 1px solid var(--primary);
   border-radius: 10px;
   margin: 10px;
   padding: 10px;
 }
-#skills span:hover {
+#home .skills span:hover {
   background: var(--theme);
   box-shadow: 0 0 5px 1px rgba(0,0,0,0.33);
   border-color: rgba(0,0,0,0.33);
 }
 
-#skills p {
+#home .skills p {
   text-align: center;
 }
 
-#skills img {
+#home .skills img {
   width: 100px;
   padding-bottom: 10px;
-  border-bottom-color: var(--bg);
+  border-bottom-color: var(--primary);
 }
 
-#home img {
+#home .logo {
   width: 170px;
   height: 170px;
   border-radius: 50%;
-  border: 5px solid var(--bg);
+  border: 5px solid var(--primary);
 }
-
-#home h4 {
+.home-tabs{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 10px 0;
+}
+.home-tabs span{
+  padding: 5px 10px;
+  border-radius: 5px;
+  min-width: 100px;
+}
+.home-tabs span.active{
+  color: #ffffff !important;
+  background: var(--theme);
+}
+.tab-content{display: none;}
+.tab-content.about{display: block;}
+#home span.h4 {
   color: var(--font);
   margin: 10px;
   padding: 10px;
-  border: 1px solid var(--bg);
+  border: 1px solid var(--primary);
   border-radius: 10px;
   text-align: justify;
+  display: block;
 }
 
-#home h4 i {
+#home span.h4 i {
   width: 30px;
   height: 30px;
   line-height: 30px;
   text-align: center;
 }
 
-#home h4 button {
+#home span.h4 button {
   padding: 5px 10px;
   border: none;
   border-radius: 50px;
@@ -203,7 +213,7 @@ header .active {
   width: calc(100% - 20px);
   margin: 5px 10px;
   border-radius: 10px;
-  background: var(--bg);
+  background: var(--primary);
   outline-color: var(--theme);
   color: var(--theme);
   border: none;
@@ -215,7 +225,7 @@ header .active {
   width: 100px;
   margin-bottom: 20px;
   border-radius: 10px;
-  background: var(--bg);
+  background: var(--primary);
   color: var(--theme);
   border: none;
   padding: 5px 10px;
@@ -223,38 +233,67 @@ header .active {
   font-weight: 800;
 }
 
-#settings fieldset{
+#home .settings fieldset{
   border: none;
-  border-top: 1px solid var(--bg);
+  border-top: 1px solid var(--primary);
   margin: 10px;
   color: var(--font);
   text-align: left;
 }
-#settings fieldset legend{
-  border: 1px solid var(--bg);
+#home .settings fieldset legend{
+  border: 1px solid var(--primary);
   border-top: none;
   border-bottom: none;
   padding: 0 10px;
 }
-#settings fieldset{
+#home .settings fieldset{
   display: flex;
   justify-content: space-between;
 }
 
-#settings select, #settings input{
+#home .settings select, #home .settings input{
   min-width: 100px;
+}
+
+#donate embed{
+  width: 90%;
+  height: 530px;
+  border-radius: 10px;
+  margin-top: 10px;
+}
+#donate span{
+  height: 45px;
+  line-height: 45px;
+  min-width: 120px;
+  border-radius: 5px;
+  box-shadow: 0 0 5px 1px #00000033;
+  background: var(--theme);
+  color: var(--font);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  margin: 5px;
+  padding: 0 10px;
+}
+
+#donate span img{
+  height: 30px;
+  width: 30px;
+  border: 0;
+  margin-right: 5px;
 }
 
 .social {
   text-align: center;
   margin-top: 10px;
+  padding-bottom: 80px;
 }
 
 .social a {
   width: 40px;
   height: 40px;
   line-height: 40px;
-  background: var(--bg2);
+  background: var(--secondary);
   text-align: center;
   border-radius: 10px;
   display: inline-block;
@@ -267,4 +306,19 @@ header .active {
 .social a:hover {
   background: var(--theme);
   color: #fff;
+}
+@media (max-width: 800px){
+  html,
+  body,
+  .container {
+  background: var(--secondary);
+    display: block;
+  }
+  .main{
+    width: 100%;
+    max-height: 100%;
+    min-height: 0;
+    box-shadow: 0 0 0;
+    border-radius: 0;
+  }
 }
