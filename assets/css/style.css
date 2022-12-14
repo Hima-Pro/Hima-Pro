@@ -6,15 +6,16 @@
   scrollbar-width: none;
   font-family: 'Cairo', sans-serif;
 }
-
 :root{
   --shadow:0 0 5px 1px #00000033;
 }
-
 ::-webkit-scrollbar {
   display: none;
 }
-
+::placeholder {
+  color: var(--font);
+  opacity: 0.44;
+}
 html,
 body,
 .container {
@@ -36,19 +37,17 @@ header {
   text-align: center;
   z-index: 2;
 }
-
 header * {
   display: inline-block;
 }
-
 header nav {
   border-radius: 10px;
   background: var(--secondary);
-  height: 45px;
-  line-height: 45px;
+  height: 50px;
+  line-height: 35px;
+  padding: 5px 10px;
   box-shadow: var(--shadow);
 }
-
 header span {
   display: inline-block;
   height: 40px;
@@ -58,13 +57,11 @@ header span {
   border-radius: 50%;
   color: var(--theme);
 }
-
 header span:hover,
 header .active {
   background: var(--theme);
   color: var(--secondary);
 }
-
 header nav span:active,
 header .active {
   background: var(--theme);
@@ -84,29 +81,19 @@ header .active {
   background: var(--secondary);
   box-shadow: var(--shadow);
 }
-
 .main img {
   width: 100%;
   border-radius: 10px 10px 0 0;
-  border-bottom: 1px solid var(--theme);
 }
-
 .main h1, .main h2{
   margin: 5px;
   color: var(--theme);
 }
-
 .main hr {
   margin: 0 10px;
   height: 0;
   background: var(--secondary);
   border: 0.03rem solid var(--primary);
-}
-
-.main p {
-  margin: 5px 10px;
-  color: var(--font);
-  text-align: justify;
 }
 
 #p404 img{width:300px}
@@ -126,28 +113,86 @@ header .active {
 }
 #p404 button:hover{background: var(--secondary);}
 
-#home .skills span {
+#experience div.projects, #posts .postGrid{
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}
+#experience .projects .repo,
+#posts .postGrid .post{
+  width: 250px;
+  box-shadow: 0 0 5px 1px rgba(0,0,0,0.33);
+  border-radius: 10px;
+  margin: 10px;
+  text-align: match-parent;
+  background: var(--primary);
+  display: inline-block;
+}
+
+#experience .projects .repo a,
+#posts .postGrid .post a,
+#postSection a{
+  text-decoration: none;
+  display: block;
+}
+
+#experience .projects .repo h4,
+#posts .postGrid .post h4,
+#postSection h4{
+  margin: 0;
+  font-size: 25px;
+  padding: 0 10px !important;
+  color: var(--theme);
+}
+
+#experience .projects .repo p{
+  margin: 0;
+  padding-left: 10px;
+  color: var(--font);
+}
+
+#experience .skills span {
   display: inline-block;
   border: 1px solid var(--primary);
   border-radius: 10px;
   margin: 10px;
   padding: 10px;
 }
-#home .skills span:hover {
+#experience .skills span:hover {
   background: var(--theme);
   box-shadow: 0 0 5px 1px rgba(0,0,0,0.33);
   border-color: rgba(0,0,0,0.33);
 }
-
-#home .skills p {
+#experience .skills p {
   text-align: center;
+  color: var(--font);
 }
-
-#home .skills img {
-  width: 100px;
+#experience .skills img {
+  width: 130px;
   padding-bottom: 10px;
   border-bottom-color: var(--primary);
 }
+
+.tabs{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 10px 0;
+}
+.tabs span{
+  padding: 5px 10px;
+  border-radius: 5px;
+  min-width: 100px;
+  color: var(--font);
+  height: 40px;
+  line-height: 30px;
+}
+.tabs span.active{
+  color: #ffffff !important;
+  background: var(--theme);
+}
+.tab-content{display: none;}
+.tab-content.active{display: block;}
 
 #home .logo {
   width: 170px;
@@ -155,23 +200,6 @@ header .active {
   border-radius: 50%;
   border: 5px solid var(--primary);
 }
-.home-tabs{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 10px 0;
-}
-.home-tabs span{
-  padding: 5px 10px;
-  border-radius: 5px;
-  min-width: 100px;
-}
-.home-tabs span.active{
-  color: #ffffff !important;
-  background: var(--theme);
-}
-.tab-content{display: none;}
-.tab-content.about{display: block;}
 #home span.h4 {
   color: var(--font);
   margin: 10px;
@@ -181,15 +209,15 @@ header .active {
   text-align: justify;
   display: block;
 }
-
 #home span.h4 i {
   width: 30px;
   height: 30px;
   line-height: 30px;
   text-align: center;
 }
-
-#home span.h4 button {
+#home span.h4 button,
+#posts .postGrid .post .postFooter button,
+#postSection .tags button{
   padding: 5px 10px;
   border: none;
   border-radius: 50px;
@@ -197,14 +225,29 @@ header .active {
   color: #ffffff;
   margin: 5px 2.5px;
 }
-
 #home span {
   color: var(--font)
 }
 
-::placeholder {
+#settings fieldset{
+  border: none;
+  border-top: 1px solid var(--primary);
+  margin: 10px;
   color: var(--font);
-  opacity: 0.44;
+  text-align: left;
+}
+#settings fieldset legend{
+  border: 1px solid var(--primary);
+  border-top: none;
+  border-bottom: none;
+  padding: 0 10px;
+}
+#settings fieldset{
+  display: flex;
+  justify-content: space-between;
+}
+#settings select, #settings input{
+  min-width: 100px;
 }
 
 #contact input,
@@ -219,7 +262,6 @@ header .active {
   border: none;
   padding: 5px 10px;
 }
-
 #contact button {
   height: 50px;
   width: 100px;
@@ -233,26 +275,19 @@ header .active {
   font-weight: 800;
 }
 
-#home .settings fieldset{
-  border: none;
-  border-top: 1px solid var(--primary);
-  margin: 10px;
-  color: var(--font);
-  text-align: left;
-}
-#home .settings fieldset legend{
-  border: 1px solid var(--primary);
-  border-top: none;
-  border-bottom: none;
-  padding: 0 10px;
-}
-#home .settings fieldset{
+#posts .postGrid .post .postFooter{
   display: flex;
   justify-content: space-between;
+  margin: 10px;
+  color: var(--font);
 }
-
-#home .settings select, #home .settings input{
-  min-width: 100px;
+#postSection .postSection{
+  color: var(--font);
+  margin: 20px;
+}
+#postSection .postSection a{
+  text-decoration: none;
+  color: var(--theme);
 }
 
 #donate embed{
@@ -275,7 +310,6 @@ header .active {
   margin: 5px;
   padding: 0 10px;
 }
-
 #donate span img{
   height: 30px;
   width: 30px;
@@ -286,9 +320,8 @@ header .active {
 .social {
   text-align: center;
   margin-top: 10px;
-  padding-bottom: 80px;
+  padding-bottom: 90px;
 }
-
 .social a {
   width: 40px;
   height: 40px;
@@ -302,16 +335,16 @@ header .active {
   font-size: 25px;
   box-shadow: var(--shadow);
 }
-
 .social a:hover {
   background: var(--theme);
   color: #fff;
 }
+
 @media (max-width: 800px){
   html,
   body,
   .container {
-  background: var(--secondary);
+    background: var(--secondary);
     display: block;
   }
   .main{
@@ -321,4 +354,17 @@ header .active {
     box-shadow: 0 0 0;
     border-radius: 0;
   }
+  #experience .projects .repo, #posts .postGrid .post{width: calc(100% - 40px);}
+}
+
+.rtl {
+  direction: rtl; 
+  text-align: right;
+  unicode-bidi: bidi-override;
+}
+
+.ltr {
+  direction: ltr; 
+  text-align: left;
+  unicode-bidi: bidi-override;
 }

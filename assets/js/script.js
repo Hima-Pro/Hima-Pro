@@ -3,8 +3,8 @@ var ldb = window.localStorage;
 var root = document.querySelector(':root').style;
 var config = {
   "defaultMode": "dark",
-  "colorAccent": "#FFCA00",
-  "pages": ["projects", "contact", "home", "posts", "donate"]
+  "colorAccent": "#0099ff",
+  "pages": ["experience", "contact", "home", "posts", "donate", "settings", "postSection"]
 };
 var go = (path) => {
   history.replaceState('', "Hima-Pro", path);
@@ -20,6 +20,13 @@ function engine() {
     } else {
       if (page==null) {
       document.querySelector("#home").style.display = "block";
+      } else if(page.length===19){
+        makePost(page);
+        var postVisibility=document.querySelector("#postSection").style;
+        if (postVisibility.display!="block") {
+          postVisibility.display="block";
+        }
+
       } else {
       document.querySelector("#p404").style.display = "block";
       }
@@ -57,28 +64,36 @@ function engine() {
     root.setProperty('--font', '#3f3f3f');
     root.setProperty('--secondary', '#ffffff');
     if(document.body.offsetWidth<=800){
-      window.themeColor.setAttribute('content', '#efffff');
+      window.themeColor.setAttribute('content', '#ffffff');
     } else{
       window.themeColor.setAttribute('content', '#eeeeee');
     }
   }
   window.modeSetting.value = mode;
+  var divs = document.querySelectorAll(".checkMy > *");
+  for ( var index = 0; index < divs.length; index++ ) {
+    if( checkRtl( divs[index].innerHTML ) ) {
+      divs[index].classList.add('rtl');
+    } else{
+      divs[index].classList.add('ltr');
+    }
+  }
 }
-function homeTab(tabName) {
-  document.querySelectorAll(".home-tabs > .tab").forEach(box => {
+function homeTab(tabName, container, display) {
+  document.querySelectorAll(`${container} .tabs > .tab`).forEach(box => {
     box.classList.remove("active");
-      document.querySelector(".home-tabs > ." + tabName).classList.add("active");
+      document.querySelector(`${container} .tabs > .${tabName}`).classList.add("active");
   });
-  document.querySelectorAll(".tab-contents > .tab-content").forEach(box => {
+  document.querySelectorAll(`${container} .tab-contents > .tab-content`).forEach(box => {
     box.style.display="none";
-      document.querySelector(".tab-contents > ." + tabName).style.display="block";
+      document.querySelector(`${container} .tab-contents > .${tabName}`).style.display=display||"block";
   });
 }
 function full() {
   var doc = window.document;
   var docEl = doc.documentElement;
   var requestFullScreen = docEl.requestFullscreen || docEl.mozRequestFullScreen || docEl.webkitRequestFullScreen || docEl.msRequestFullscreen;
-  var cancelFullScreen = doc.exitFullscreen || doc.mozCancelFullScreen || doc.webkitExitFullscreen || pdoc.msExitFullscreen;
+  var cancelFullScreen = doc.exitFullscreen || doc.mozCancelFullScreen || doc.webkitExitFullscreen || doc.msExitFullscreen;
   if (!doc.fullscreenElement && !doc.mozFullScreenElement && !doc.webkitFullscreenElement && !doc.msFullscreenElement) {
     requestFullScreen.call(docEl);
   } else {
@@ -126,3 +141,81 @@ pickr.on('save', (color, pickr) => {
 });
 pickr.getRoot().preview.lastColor.style.display = "none";
 pickr.getRoot().preview.currentColor.style.width = "100%";
+
+var ghRepos=fetch("https://api.github.com/users/Hima-Pro/repos")
+.then(repos=>repos.json())
+.then(repos=>{
+  repos.forEach(repo=>{
+    if(!repo.private && !repo.fork){
+      document.querySelector(".tab-content.projects").innerHTML+=(`
+        <div class="repo checkMy">
+          <img src="https://opengraph.githubassets.com/${repo.updated_at}/${repo.owner.login}/${repo.name}">
+            <a href="${repo.html_url}" target="_blank">
+            <h4><i class="fad fa-link-simple"></i> ${repo.name}</h4>
+          </a>
+          ${repo.description?"<p>"+repo.description+"</p>":""}
+        </div>
+      `);
+    }
+  });
+});
+
+var bloggers=fetch("https://tdim-blogger.vercel.app/posts")
+.then(res=>res.json())
+.then(posts=>{
+  posts.entry.forEach(post=>{
+    document.querySelector("#posts > .postGrid").innerHTML+=`
+    <div class="post checkMy">
+      <img width="100%" src="${post.thumbnail}">
+      <a href="?p=${post.id}"><h4>${post.title}</h4></a>
+      <p class="postFooter">
+        <span>${((tags)=>{
+          var tagsHTML="";
+          if (tags.length>2) {
+          tagsHTML=`
+            <button>${tags[0]}</button>
+            <button>${tags[1]}</button>`;
+          } else {
+            tags.forEach(tag=>{
+              tagsHTML+=`<button>${tag}</button>`;
+            });
+          }
+          return tagsHTML;
+        })(post.label)}</span>
+        <span>${post.updated}</span>
+      </p>
+    </div>
+    `;
+  });
+});
+
+function makePost(postId){
+  if (!window.postCreated) {
+    var postMaker=fetch("https://tdim-blogger.vercel.app/posts/"+postId)
+    .then(res=>res.json())
+    .then(post=>{
+      document.querySelector("#postSection").innerHTML=`
+      <div class="postSection checkMy">
+        <a onclick="go(\"?p=${post.id}\")"><h4><i class="fad fa-rss"></i> ${post.title}</h4></a><hr><br>
+        <div class="postContent">${post.content}</div>
+        <span class="tags">${((tags)=>{
+          var tagsHTML="";
+          tags.forEach(tag=>{
+            tagsHTML+=`<button>${tag}</button>`;
+          });
+          return tagsHTML;
+        })(post.label)}</span>
+        <hr>
+        <div id="fb-root"></div>
+        <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v15.0" nonce="7Sgrdvk1"></script>
+        <div class="fb-comments" data-href="https://developers.facebook.com/docs/plugins/comments#tdim-blogger-${post.id}" data-width="" data-numposts="10"></div>
+      </div>`;
+    });
+    window.postCreated=true;
+  }
+}
+
+function checkRtl(character) {
+  var arabic = /[\u0600-\u06FF]/;
+  return arabic.test(character);
+}
